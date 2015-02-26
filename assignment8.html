@@ -184,7 +184,7 @@ appear to be missing from the CS cluster.</p>
 <h2>Assignment (20 points)</h2>
 
 <p>For this assignment, you will implement a stable summation algorithm,
-a Discrete Fourier Transform (DFT) algorithm, a spectral synthesizer, 
+a Discrete Fourier Transform (DFT) algorithm, a spectral synthesizer,
 numeric integrators, and root solvers.</p>
 
 <h3>Part 0: Stable summation with the Kahan algorithm</h3>
@@ -198,10 +198,10 @@ have a profound effect. This can be illustrated by a quick (and very
 contrived) example in <span class="code">kahan/kahan.cpp</span>. The
 example code adds up all the numbers in a vector one at a time and
 returns the result &mdash; and it's wrong! We add 1 to (10^8)*(10^-8) and
-get back 1, where we would usually expect 2. You'll be writing some code 
+get back 1, where we would usually expect 2. You'll be writing some code
 that does a much better job.</p>
 
-<p><div class="points easy">0.5</div>In your own words, in a 
+<p><div class="points easy">0.5</div>In your own words, in a
 <span class="code">README</span> file, explain what is going on that
 causes the naive summation to return the wrong result.</p>
 
@@ -209,7 +209,7 @@ causes the naive summation to return the wrong result.</p>
 algorithm (or another stable summation algorithm of your choice) online
 and implement it in <span class="code">kahan/kahan.cpp</span>.
 Demonstrate that your code returns the right result <b>using the same
-test vector as for naive summation</b> by printing out the value at the 
+test vector as for naive summation</b> by printing out the value at the
 end of <span class="code">main()</span>.</p>
 
 <h3>Part 1: Solving a physical system numerically (planetary orbits!)</h3>
@@ -359,7 +359,7 @@ Fourier Transform. Implement the FFT in the
 found in <span class="code">src/FourierTransform.cpp</span>. This
 function takes the same arguments as the DFT version.</p>
 
-<p><div class="points hard">5</div>In the file
+<p><div class="points hard">2</div>In the file
 <span class="code">src/SpectralSynthesizer.cpp</span>, implement the
 (slightly modified) <span class="code">SpectralSynthesisFM2D</span>
 algorithm, whose pseudocode is below, in
@@ -379,7 +379,7 @@ distributions, respectively. We have provided similar functions
 <span class="code">gaussian()</span> for you.</p>
 
 <div class="hint">We have provided a macro <span class="code">ndx</span>
-that you can use to index a two-dimensional array, so you can write 
+that you can use to index a two-dimensional array, so you can write
 <span class="code">A[i][j]</span> from the pseudocode as
 <span class="code">ndx(A, i, j, n)</span>, if <span class="code">A</span>
 is to be interpreted as an <i>n</i>-by-<i>n</i> 2-dimensional array.</div>
@@ -449,14 +449,17 @@ top of <span class="code">src/FourierTransform.hpp</span> determines
 whether the DFT or FFT will be used to compute the surface; feel free
 to test both of your algorithms.</p>
 
-<p><b>For your interest only; not for points.</b> We
-could use this visualizer and synthesizer to make more than mountains.
-The spectrum of ocean waves can be described by</p>
+<p><div class="points hard">3</div>We could use this visualizer and synthesizer
+to make more than mountains. The spectrum of ocean waves can be described by</p>
 
 <center><img src="images/OceanSpectrum.gif" /></center>
 
-<p>where <i>a</i> and <i>b</i> are positive constants. Can you modify your
-code to generate and visualize a surface that approximates ocean waves?</p>
+<p>where <i>a</i> and <i>b</i> are positive constants, and <i>(f,φ)</i> are the
+polar coordinates of the frequency variables. Can you modify your
+code to generate and visualize a surface that approximates ocean waves? Write
+a new member function that does this in
+<span class="code">SpectralSynthesizer::getOceanSpectrum</span>. As a hint,
+you can re-use much of the code above.</p>
 
 <div class="hint">If you have any questions about this week's assignment,
 please contact cs2tas@caltech.edu, or show up at any TA's office
