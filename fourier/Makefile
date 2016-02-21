@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -ansi -pedantic -ggdb
+CXXFLAGS = -Wall -ansi -pedantic -ggdb --std=c++11
 DOCSGEN = doxygen
 LDFLAGS	= -L/usr/X11R6/lib -lglut -lGL -lGLU -lXi -lXmu -lm
 SRC = src
@@ -7,11 +7,14 @@ OBJ = obj
 BIN = bin
 DOCS = docs
 
-.PHONY: fourier docs
+.PHONY: fourier visualizer docs
 
 fourier: $(OBJ)/ComplexNumber.o $(OBJ)/FourierTransform.o \
 $(OBJ)/SpectralSynthesizer.o $(OBJ)/Vector3D.o
-	$(CXX) $(SRC)/main.cpp $(OBJ)/*.o $(CXXFLAGS) $(LDFLAGS) -o $(BIN)/fourier
+	$(CXX) $(SRC)/main.cpp $^ $(CXXFLAGS) $(LDFLAGS) -o $(BIN)/fourier
+
+visualizer: $(OBJ)/ComplexNumber.o $(OBJ)/FourierTransform.o $(OBJ)/visualizer.o
+	$(CXX) $^ `sdl-config --libs` -lSDL_gfx -o $(BIN)/visualizer
 
 docs:
 	$(DOCSGEN)
@@ -22,6 +25,10 @@ $(OBJ)/ComplexNumber.o: $(SRC)/ComplexNumber.cpp $(SRC)/ComplexNumber.hpp
 $(OBJ)/FourierTransform.o: $(SRC)/FourierTransform.cpp $(SRC)/FourierTransform.hpp \
 $(SRC)/ComplexNumber.hpp
 	$(CXX) $(SRC)/FourierTransform.cpp -c $(CXXFLAGS) -o $(OBJ)/FourierTransform.o
+
+$(OBJ)/visualizer.o: $(SRC)/visualizer.cpp $(SRC)/FourierTransform.hpp \
+$(SRC)/ComplexNumber.hpp
+	$(CXX) $< $(CXXFLAGS) `sdl-config --cflags` -c -o $@
 
 $(OBJ)/SpectralSynthesizer.o: $(SRC)/SpectralSynthesizer.cpp \
 $(SRC)/SpectralSynthesizer.hpp  $(SRC)/ComplexNumber.hpp

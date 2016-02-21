@@ -311,6 +311,8 @@ the DFT only; we do not expect you to prove any theorems.</p>
     <li>libgl1-mesa-dev</li>
     <li>libglu1-mesa-dev</li>
     <li>freeglut3-dev</li>
+    <li>libsdl1.2-dev</li>
+    <li>libsdl-gfx1.2-dev</li>
     <li>doxygen</li>
 </ul>
 
@@ -493,7 +495,22 @@ recursive version of the DFT was presented; this is the FFT, or Fast
 Fourier Transform. Implement the FFT in the
 <span class="code">FourierTransform::fast_transform</span> function,
 found in <span class="code">src/FourierTransform.cpp</span>. This
-function takes the same arguments as the DFT version.</p>
+function takes the same arguments as the DFT version. Note that for
+the FFT, you can assume that the number of samples is a power of 2.</p>
+
+<p>In order to test your DFT and FFT implementations, we have supplied you with
+a simple visualizer; run <span class="code">make visualizer</span> to compile
+it. The visualizer takes a single command line argument:
+<span class="code">-d</span> to use the DFT or <span class="code">-f</span> to
+use the FFT. The visualizer will read formatted data from
+<span class="code">cin</span>, compute the Fourier transform, then display the
+result. We have supplied you with several sample datasets in the
+<span class="code">data</span> directory. Use a pipe to feed one of these
+datasets into the visualizer:</p>
+
+<div class="code">
+    ./bin/visualizer -d < data/sinewave
+</div>
 
 <p><div class="points hard">2</div>In the file
 <span class="code">src/SpectralSynthesizer.cpp</span>, implement the
