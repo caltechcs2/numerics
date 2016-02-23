@@ -1,7 +1,7 @@
 CXX = g++
-CXXFLAGS = -Wall -ansi -pedantic -ggdb --std=c++11
+CXXFLAGS = -Wall -ggdb --std=c++11
 DOCSGEN = doxygen
-LDFLAGS	= -L/usr/X11R6/lib -lglut -lGL -lGLU -lm
+LDFLAGS	= `pkg-config --libs freeglut glu gl` -lm
 SRC = src
 OBJ = obj
 BIN = bin
@@ -9,34 +9,40 @@ DOCS = docs
 
 .PHONY: fourier visualizer docs
 
-fourier: $(OBJ)/ComplexNumber.o $(OBJ)/FourierTransform.o \
-$(OBJ)/SpectralSynthesizer.o $(OBJ)/Vector3D.o
-	$(CXX) $(SRC)/main.cpp $^ $(CXXFLAGS) $(LDFLAGS) -o $(BIN)/fourier
+fourier: $(BIN)/fourier
 
-visualizer: $(OBJ)/ComplexNumber.o $(OBJ)/FourierTransform.o $(OBJ)/visualizer.o
-	$(CXX) $^ `sdl-config --libs` -lSDL_gfx -o $(BIN)/visualizer
+visualizer: $(BIN)/visualizer
+
+$(BIN)/fourier: $(OBJ)/ComplexNumber.o $(OBJ)/FourierTransform.o \
+$(OBJ)/SpectralSynthesizer.o $(OBJ)/Vector3D.o
+	$(CXX) $(SRC)/main.cpp $^ $(CXXFLAGS) $(LDFLAGS) -o $@
+
+$(BIN)/visualizer: $(OBJ)/ComplexNumber.o $(OBJ)/FourierTransform.o \
+$(OBJ)/visualizer.o
+	$(CXX) $^ `sdl-config --libs` -lSDL_gfx -o $@
 
 docs:
 	$(DOCSGEN)
 
 $(OBJ)/ComplexNumber.o: $(SRC)/ComplexNumber.cpp $(SRC)/ComplexNumber.hpp
-	$(CXX) $(SRC)/ComplexNumber.cpp -c $(CXXFLAGS) -o $(OBJ)/ComplexNumber.o
+	$(CXX) $< -c $(CXXFLAGS) -o $@
 
 $(OBJ)/FourierTransform.o: $(SRC)/FourierTransform.cpp $(SRC)/FourierTransform.hpp \
 $(SRC)/ComplexNumber.hpp
-	$(CXX) $(SRC)/FourierTransform.cpp -c $(CXXFLAGS) -o $(OBJ)/FourierTransform.o
+	$(CXX) $< -c $(CXXFLAGS) -o $@
 
 $(OBJ)/visualizer.o: $(SRC)/visualizer.cpp $(SRC)/FourierTransform.hpp \
 $(SRC)/ComplexNumber.hpp
 	$(CXX) $< $(CXXFLAGS) `sdl-config --cflags` -c -o $@
 
 $(OBJ)/SpectralSynthesizer.o: $(SRC)/SpectralSynthesizer.cpp \
-$(SRC)/SpectralSynthesizer.hpp  $(SRC)/ComplexNumber.hpp
-	$(CXX) $(SRC)/SpectralSynthesizer.cpp -c $(CXXFLAGS) -o $(OBJ)/SpectralSynthesizer.o
+$(SRC)/SpectralSynthesizer.hpp  $(SRC)/ComplexNumber.hpp \
+$(SRC)/FourierTransform.hpp
+	$(CXX) $< -c $(CXXFLAGS) -o $@
 
 $(OBJ)/Vector3D.o: $(SRC)/Vector3D.cpp $(SRC)/Vector3D.hpp
-	$(CXX) $(SRC)/Vector3D.cpp -c $(CXXFLAGS) -o $(OBJ)/Vector3D.o
+	$(CXX) $< -c $(CXXFLAGS) -o $@
 
 clean:
-	rm -f $(OBJ)/*.o $(BIN)/fourier
+	rm -f $(OBJ)/*.o $(BIN)/fourier $(BIN)/visualizer
 	rm -rf $(DOCS)/*
