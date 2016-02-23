@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -ansi -pedantic -ggdb --std=c++11
 DOCSGEN = doxygen
-LDFLAGS	= -L/usr/X11R6/lib -lglut -lGL -lGLU -lXi -lXmu -lm
+LDFLAGS	= -L/usr/X11R6/lib -lglut -lGL -lGLU -lm
 SRC = src
 OBJ = obj
 BIN = bin
