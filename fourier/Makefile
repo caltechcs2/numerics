@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -ggdb --std=c++11
 DOCSGEN = doxygen
-LDFLAGS	= `pkg-config --libs freeglut glu gl` -lm
+LDFLAGS	= -lglut -lGLU -lGL -lm
 SRC = src
 OBJ = obj
 BIN = bin

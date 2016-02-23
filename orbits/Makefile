@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -ansi -pedantic -ggdb
 LDFLAGS = -lm
-GLFLAGS = `pkg-config --libs freeglut glu gl`
+GLFLAGS = -lglut -lGLU -lGL
 DOCSGEN = doxygen
 
 SRC = src
