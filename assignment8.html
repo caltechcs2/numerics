@@ -436,16 +436,17 @@ a single value as input and outputs a single value, in the
 your precision is less than or equal to
 <span class="code">TOLERANCE</span>.</p>
 
-<p><div class="points easy">1</div>Test your new solvers by writing
-a simple testsuite, in <span class="code">src/testsuite.cpp</span>,
-solving a few analytically-solvable equations and a few
-non-analytically-solvable ones. Show that they both converge
-to the same root, and make sure it is the correct one.
-<a href="www.wolframalpha.com">Wolfram|Alpha</a> can help you determine
-the correct answer for many non-analytic problems. Make sure your
-testsuite prints out useful information; at minimum, you should print
-the function you are finding the root for, the correct answer, and the
-answer your numerical function found.</p>
+<p><div class="points easy">1</div>Test your new solvers by writing a simple
+testsuite, in <span class="code">src/testsuite.cpp</span>, solving a few
+analytically-solvable equations and a few non-analytically-solvable ones. Show
+that they both converge to the same root, and make sure it is the correct one.
+<a href="www.wolframalpha.com">Wolfram|Alpha</a> can help you determine the
+correct answer for many non-analytic problems. Make sure your testsuite prints
+out useful information; at minimum, you should print the function you are
+finding the root for, the correct answer, and the answer your numerical
+function found. Note: the bisection method fails for equations with double
+roots, such as <img src="images/BadFunction.gif" />, so avoid functions with
+double roots when writing your testsuite.</p>
 
 <p>To get the shape of the orbit, we will solve an equation of the
 form</p>
