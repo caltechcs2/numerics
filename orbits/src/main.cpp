@@ -135,26 +135,32 @@ void doPhysicsStep()
             
         case METHOD_FORWARD_EULER:
             forward_euler(&x, &y, &vx, &vy, TIMESTEP);
-            printf("\r%f", ENERGY);
+            printf("\rEnergy: %f", ENERGY);
             fflush(stdout);
             break;
             
         case METHOD_BACKWARD_EULER:
             backward_euler(&x, &y, &vx, &vy, TIMESTEP);
-            printf("\r%f", ENERGY);
+            printf("\rEnergy: %f", ENERGY);
             fflush(stdout);
             break;
             
         case METHOD_SYMPLECTIC_EULER:
             symplectic_euler(&x, &y, &vx, &vy, TIMESTEP);
-            printf("\r%f", ENERGY);
+            printf("\rEnergy: %f", ENERGY);
             fflush(stdout);
             break;
 
         case METHOD_NEWTON_RAPHSON:
             double xi = newton_raphson(f, fp, 2. * PI / PERIOD * t);
+            double x_old = x;
+            double y_old = y;
             x = cos(xi) - ECCENTRICITY;
             y = sqrt(1. - ECCENTRICITY * ECCENTRICITY) * sin(xi);
+            vx = (x - x_old) / TIMESTEP;
+            vy = (y - y_old) / TIMESTEP;
+            printf("\rEnergy: %f", ENERGY);
+            fflush(stdout);
             break;
     }
 
