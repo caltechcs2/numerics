@@ -150,7 +150,7 @@
 
 <div class="author">Author: Ellen Price</div>
 <h1>CS2 Assignment 8: Numerics</h1>
-<h2>Due Tuesday, March 3, 2015, at 17:00 PST</h2>
+<h2>Due Tuesday, March 1, 2016, at 17:00 PST</h2>
 
 <hr />
 
@@ -190,7 +190,7 @@ rule to approximate the equations of motion of the system that is being
 simulated. The update rules are defined differently for each method,
 however. Consider some system with a position <i>x</i> and
 velocity <i>v</i>; we have only the functional form of the
-acceleration, <i>f(x, t) = dv/dt</i>. If we use the forward Euler method,
+acceleration, <i>f(t, x) = dv/dt</i>. If we use the forward Euler method,
 then the position <i>x</i> after <i>n</i> timesteps will be given
 by</p>
 
@@ -603,6 +603,11 @@ top of <span class="code">src/FourierTransform.hpp</span> determines
 whether the DFT or FFT will be used to compute the surface; feel free
 to test both of your algorithms.</p>
 
+<p>If you're having issues running the graphics package on the virtual
+machine, try adding the line <span class="code">export LIBGL_ALWAYS_SOFTWARE=1</span> to your
+<span class="code">~/.bashrc</span> file, and then running
+<span class="code">source ~/.bashrc</span>.</p>
+
 <p><div class="points hard">3</div>We could use this visualizer and synthesizer
 to make more than mountains. The spectrum of ocean waves can be described by</p>
 
@@ -616,7 +621,7 @@ a new member function that does this in
 you can re-use much of the code above.</p>
 
 <div class="hint">If you have any questions about this week's assignment,
-please contact cs2tas@caltech.edu, or show up at any TA's office
+please contact cs2tas-2016@caltech.edu, or show up at any TA's office
 hours.</div>
 
 </div>

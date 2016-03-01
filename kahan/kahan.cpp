@@ -14,7 +14,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  * * Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above
@@ -24,7 +24,7 @@
  * * Neither the name of the  nor the names of its
  *   contributors may be used to endorse or promote products derived from
  *   this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -36,7 +36,7 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  */
 
 
@@ -50,16 +50,16 @@ using namespace std;
 
 
 /**
- * @brief Sums the vector `vec`, by adding the elements up one at a 
+ * @brief Sums the vector `vec`, by adding the elements up one at a
  * time.
  */
 float naive_sum(vector<float> vec)
 {
 	float sum = 0.;
-	
-	for (int i = 0; i < vec.size(); i++)
+
+	for (unsigned int i = 0; i < vec.size(); i++)
 		sum += vec[i];
-	
+
 	return sum;
 }
 
@@ -73,10 +73,10 @@ int main()
 	// Make a nice vector to sum up.
 	vector<float> vec;
 	vec.push_back(1.);
-	
+
 	for (int i = 0; i < HUGE; i++)
 		vec.push_back(TINY);
-	
+
 	// Try out our summation algorithms!
 	cout << "Result of naive summation: " << naive_sum(vec) << endl;
 }
