@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -ggdb --std=c++11
+CXXFLAGS = -Wall -pedantic -ggdb --std=c++11
 DOCSGEN = doxygen
 LDFLAGS	= -lglut -lGLU -lGL -lm
 SRC = src
