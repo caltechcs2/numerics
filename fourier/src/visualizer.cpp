@@ -121,14 +121,14 @@ SDL_Surface *OnInit(unsigned n)
     /* Initialize *all* the things! */
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
-        return NULL;
+        return nullptr;
     }
 
     screen = SDL_SetVideoMode(2*n, IMAGE_HEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 
-    if(screen == NULL)
+    if(screen == nullptr)
     {
-        return NULL;
+        return nullptr;
     }
 
     /* This is necessary to receive Unicode keycodes. */
@@ -163,7 +163,7 @@ bool OnEvent(SDL_Event* event)
  */
 void OnRender(SDL_Surface *screen, ComplexNumber *data, unsigned n)
 {
-    SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
+    SDL_FillRect(screen, nullptr, SDL_MapRGB(screen->format, 0, 0, 0));
 
     for (unsigned i = 0; i < 2*n; i += 2)
     {
@@ -193,7 +193,7 @@ int OnExecute(ComplexNumber *data, unsigned n)
     SDL_Surface *screen;
     bool running = true;
 
-    if((screen = OnInit(n)) == NULL)
+    if((screen = OnInit(n)) == nullptr)
     {
         return -1;
     }
