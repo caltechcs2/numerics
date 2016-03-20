@@ -84,7 +84,7 @@ void redraw()
     glTranslated(0., x, y);
     gluSphere(quad2, PLANET_RADIUS, 256, 256);
     glPopMatrix();
-    
+
     // Undo the mouse transforms.
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
@@ -109,7 +109,7 @@ void initPhysics(bool circular)
         vx = 0.;
         vy = 1.;
     }
-    
+
     t = 0;
 }
 
@@ -132,23 +132,23 @@ void doPhysicsStep()
     {
         case METHOD_NONE:
             break;
-            
+
         case METHOD_FORWARD_EULER:
             forward_euler(&x, &y, &vx, &vy, TIMESTEP);
-            printf("\rEnergy: %f", ENERGY);
-            fflush(stdout);
+            std::cout << "\rEnergy: " << ENERGY;
+            std::cout.flush();
             break;
-            
+
         case METHOD_BACKWARD_EULER:
             backward_euler(&x, &y, &vx, &vy, TIMESTEP);
-            printf("\rEnergy: %f", ENERGY);
-            fflush(stdout);
+            std::cout << "\rEnergy: " << ENERGY;
+            std::cout.flush();
             break;
-            
+
         case METHOD_SYMPLECTIC_EULER:
             symplectic_euler(&x, &y, &vx, &vy, TIMESTEP);
-            printf("\rEnergy: %f", ENERGY);
-            fflush(stdout);
+            std::cout << "\rEnergy: " << ENERGY;
+            std::cout.flush();
             break;
 
         case METHOD_NEWTON_RAPHSON:
@@ -159,8 +159,8 @@ void doPhysicsStep()
             y = sqrt(1. - ECCENTRICITY * ECCENTRICITY) * sin(xi);
             vx = (x - x_old) / TIMESTEP;
             vy = (y - y_old) / TIMESTEP;
-            printf("\rEnergy: %f", ENERGY);
-            fflush(stdout);
+            std::cout << "\rEnergy: " << ENERGY;
+            std::cout.flush();
             break;
     }
 
@@ -231,7 +231,7 @@ void mouseDragHandler(int x, int y)
     double dy = y - lastY;
     lastX = x;
     lastY = y;
-    
+
     if (shift)
     {
         zoom += dy * zoomSpeed / yRes;
@@ -292,7 +292,7 @@ void initLights() {
     GLfloat diff[]= { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat spec[]= { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat lightpos[]= { 5., 0., 0., 1. };
-    GLfloat shiny = 4.0f; 
+    GLfloat shiny = 4.0f;
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
     glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
@@ -334,15 +334,15 @@ void initGL()
 {
     // Tell openGL to use gauraud shading:
     glShadeModel(GL_SMOOTH);
-    
+
     // Enable back-face culling:
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
 
     // Enable depth-buffer test.
     glEnable(GL_DEPTH_TEST);
-    
-    // Set up projection and modelview matrices ("camera" settings) 
+
+    // Set up projection and modelview matrices ("camera" settings)
     // Look up these functions to see what they're doing.
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -399,7 +399,7 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(300, 100);
 
     glutCreateWindow("CS2 Orbit Simulator");
-    
+
     initGL();
     initPhysics(false);
 

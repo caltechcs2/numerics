@@ -43,7 +43,7 @@
  *
  */
 
-#include <cstdio>
+#include <iostream>
 #include <unistd.h>
 #include "GL/gl.h"
 #include "GL/glu.h"
