@@ -150,7 +150,7 @@
 
 <div class="author">Author: Ellen Price</div>
 <h1>CS2 Assignment 8: Numerics</h1>
-<h2>Due Tuesday, March 1, 2016, at 17:00 PST</h2>
+<h2>Due Tuesday, February 28, 2017, at 17:00 PST</h2>
 
 <hr />
 
@@ -347,11 +347,22 @@ that does a much better job.</p>
 causes the naive summation to return the wrong result.</p>
 
 <p><div class="points easy">0.5</div>Look up the Kahan summation
-algorithm (or another stable summation algorithm of your choice) online
-and implement it in <span class="code">kahan/kahan.cpp</span>.
+algorithm online and implement it in <span class="code">kahan/kahan.cpp</span>.
 Demonstrate that your code returns the right result <b>using the same
 test vector as for naive summation</b> by printing out the value at the
 end of <span class="code">main()</span>.</p>
+
+<p><div class="points hard">1</div>Look up the pairwise summation
+algorithm online and implement it in <span class="code">kahan/kahan.cpp</span>.
+Demonstrate that your code returns the right result <b>using the same
+test vector as for naive and Kahan summation</b> by printing out the value 
+at the end of <span class="code">main()</span>. As you may find when reading
+about pairwise summation, when the number of elements to be summed is below
+some cutoff value, naive summation can be used. Using a wide range of values
+for this cutoff, examine the effect of the cutoff value on the error in
+pairwise summation. Comment on the results, as well as the relative advantages
+and disadvantages of pairwise summation as compared to Kahan summation in
+a <span class="code">README</span> file.</p>
 
 <h3>Part 1: Solving a physical system numerically (planetary orbits!)</h3>
 
@@ -611,7 +622,7 @@ machine, try adding the line <span class="code">export LIBGL_ALWAYS_SOFTWARE=1</
 <span class="code">~/.bashrc</span> file, and then running
 <span class="code">source ~/.bashrc</span>.</p>
 
-<p><div class="points hard">3</div>We could use this visualizer and synthesizer
+<p><div class="points hard">2</div>We could use this visualizer and synthesizer
 to make more than mountains. The spectrum of ocean waves can be described by</p>
 
 <center><img src="images/OceanSpectrum.gif" /></center>
@@ -621,10 +632,13 @@ polar coordinates of the frequency variables. Can you modify your
 code to generate and visualize a surface that approximates ocean waves? Write
 a new member function that does this in
 <span class="code">SpectralSynthesizer::getOceanSpectrum</span>. As a hint,
-you can re-use much of the code above.</p>
+you can re-use much of the code above. If you attempt this part, please make
+sure to modify <span class="code">main.cpp</span> so as to run the ocean
+spectrum. A simple optional command line argument will suffice.</p>
+</p>
 
 <div class="hint">If you have any questions about this week's assignment,
-please contact cs2tas-2016@caltech.edu, or show up at any TA's office
+please contact cs2-c-tas@cms.caltech.edu, or show up at any TA's office
 hours.</div>
 
 </div>
